@@ -352,51 +352,44 @@ function fitMobileReelSlides() {
 }
 
 function placeMobileCluster(open) {
-  const frame = document.getElementById("stick-figure-frame");
+  const cluster = document.getElementById("bio-cluster");
   const box = document.getElementById("wrapper");
-  if (!frame || !box || !stage) {
+  if (!cluster || !box || !stage) {
     return;
   }
 
   if (!mobilePane.matches || !open) {
-    frame.style.transition = "";
-    box.style.transition = "";
-    frame.style.transform = "";
-    box.style.transform = "";
-    delete box.dataset.paneShift;
+    cluster.style.transition = "";
+    cluster.style.transform = "";
+    delete cluster.dataset.paneShift;
     stage.style.height = "";
     stageBody?.style.removeProperty("--mobile-pane-slide");
     return;
   }
 
-  if (box.dataset.paneShift === "1") {
+  if (cluster.dataset.paneShift === "1") {
     return;
   }
 
-  frame.style.transition = "none";
-  box.style.transition = "none";
-  frame.style.transform = "translate(332px, 15px)";
-  box.style.transform = "none";
+  cluster.style.transition = "none";
+  cluster.style.transform = "none";
 
-  const frameTop = frame.getBoundingClientRect().top;
+  const clusterTop = cluster.getBoundingClientRect().top;
   const stageTop = stage.getBoundingClientRect().top;
-  if (frameTop < 40) {
-    frame.style.transition = "";
-    box.style.transition = "";
+  if (clusterTop < 40) {
+    cluster.style.transition = "";
     return;
   }
 
-  const shift = Math.max(0, Math.round(window.innerHeight - MOBILE_PANE_PEEK - frameTop));
-  const stageHeight = Math.max(220, Math.round(frameTop + shift - stageTop - 12));
+  const shift = Math.max(0, Math.round(window.innerHeight - MOBILE_PANE_PEEK - clusterTop));
+  const stageHeight = Math.max(220, Math.round(clusterTop + shift - stageTop - 12));
   stage.style.height = `${stageHeight}px`;
   fitMobileReelSlides();
-  box.dataset.paneShift = "1";
+  cluster.dataset.paneShift = "1";
 
   requestAnimationFrame(() => {
-    frame.style.transition = "";
-    box.style.transition = "";
-    frame.style.transform = `translate(332px, ${15 + shift}px)`;
-    box.style.transform = `translateY(${shift}px)`;
+    cluster.style.transition = "";
+    cluster.style.transform = `translateY(${shift}px)`;
   });
 }
 
@@ -569,4 +562,15 @@ if (stageOriginalLink) {
 }
 
 window.addEventListener("popstate", syncFromHash);
+window.addEventListener("resize", () => {
+  if (!mobilePane.matches || !document.body.dataset.pane) {
+    return;
+  }
+
+  const cluster = document.getElementById("bio-cluster");
+  if (cluster) {
+    delete cluster.dataset.paneShift;
+  }
+  placeMobileCluster(true);
+});
 syncFromHash();

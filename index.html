@@ -147,6 +147,10 @@
         color: transparent;
       }
 
+      #bio-cluster {
+        display: contents;
+      }
+
       #stick-figure-frame {
         position: fixed;
         left: 296px;
@@ -443,8 +447,8 @@
           left: auto;
           top: auto;
           width: min(100%, 340px);
-          height: 230px;
-          margin: 132px auto 4px;
+          height: clamp(190px, 28dvh, 230px);
+          margin: clamp(96px, 14dvh, 124px) auto 4px;
           font-size: 7px;
           line-height: 7px;
         }
@@ -454,8 +458,16 @@
           left: auto;
           top: auto;
           width: auto;
-          margin: 0 auto 18px;
+          margin: 0 auto clamp(6px, 1.5dvh, 12px);
           padding: 0 8px;
+        }
+
+        #bio-cluster {
+          display: block;
+          position: relative;
+          width: min(92%, calc(100vw - 32px));
+          max-width: 360px;
+          margin: clamp(-10px, -1dvh, 0px) auto 0;
         }
 
         #wrapper a {
@@ -463,6 +475,7 @@
           text-decoration: underline;
         }
 
+        #bio-cluster,
         #stick-figure-frame,
         #wrapper {
           transition: transform 0.7s ease;
@@ -472,23 +485,26 @@
           position: relative;
           left: auto;
           top: auto;
-          width: 168px;
-          height: 86px;
-          margin: 0 0 0 28px;
-          transform: translate(332px, 15px);
+          width: clamp(108px, 34vw, 168px);
+          height: clamp(55px, 17.5vw, 86px);
+          margin: 0 0 clamp(-44px, -12vw, -32px) clamp(0px, 2vw, 14px);
+          transform: none;
+          z-index: 2;
+          overflow: visible;
         }
 
         #stick-figure {
-          height: 86px;
+          height: 100%;
+          width: auto;
         }
 
         #wrapper {
           position: relative;
           left: auto;
           top: auto;
-          width: 84%;
+          width: 100%;
           height: auto;
-          margin-top: -6px;
+          margin: 0;
           padding: 12px 14px;
           box-sizing: border-box;
         }
@@ -520,8 +536,7 @@
           visibility: hidden;
         }
 
-        body[data-pane] #stick-figure-frame,
-        body[data-pane] #wrapper {
+        body[data-pane] #bio-cluster {
           z-index: 30;
         }
 
@@ -606,23 +621,24 @@
     <a class="nav-item" id="nav-github" href="https://github.com/konradtabay" target="_blank" rel="noopener noreferrer">github</a>
     <div class="nav-ruler" id="nav-ruler" aria-hidden="true"></div>
 
-    <div id="stick-figure-frame">
-      <video
-        id="stick-figure"
-        autoplay
-        loop
-        muted
-        playsinline
-        aria-hidden="true"
-      >
-        <source
-          src="/static/video/stick-figure-loop.mp4?v=7"
-          type="video/mp4"
-        />
-      </video>
-    </div>
+    <div id="bio-cluster">
+      <div id="stick-figure-frame">
+        <video
+          id="stick-figure"
+          autoplay
+          loop
+          muted
+          playsinline
+          aria-hidden="true"
+        >
+          <source
+            src="/static/video/stick-figure-loop.mp4?v=7"
+            type="video/mp4"
+          />
+        </video>
+      </div>
 
-    <div id="wrapper">
+      <div id="wrapper">
       <p>
         i currently study systems design engineering at university of
         waterloo, i've worked on ml with
@@ -644,6 +660,7 @@
         <span class="timeline-muted">startup</span> -&gt;
         <span class="timeline-muted">have 6 kids</span>
       </p>
+      </div>
     </div>
 
     <div id="stage">
