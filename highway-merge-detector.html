@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en" data-color-mode="light" data-light-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>konradtabay/HighwayMergeDetector</title>
+  <link rel="stylesheet" href="https://github.githubassets.com/assets/light-99f877e9ddfc0e51.css" />
+  <link rel="stylesheet" href="https://github.githubassets.com/assets/primer-primitives-ed9ca172356fd545.css" />
+  <link rel="stylesheet" href="https://github.githubassets.com/assets/primer-1d2c7f7b52a6068b.css" />
+  <link rel="stylesheet" href="https://github.githubassets.com/assets/global-54ba76e934a49d7c.css" />
+  <link rel="stylesheet" href="https://github.githubassets.com/assets/github-456bd5deb85c7ecd.css" />
+  <style>
+    #mirror-banner {
+      position: sticky; top: 0; z-index: 9999; display: flex; align-items: center;
+      justify-content: space-between; gap: 48px; background: #135bd6; color: #fff;
+      font-family: Geneva, Arial, sans-serif; font-size: 13px; padding: 10px 28px;
+      text-transform: lowercase;
+    }
+    #mirror-banner a { color: #fff; text-decoration: underline; }
+    #mirror-banner-original { margin-left: auto; padding-left: 48px; }
+    html.embed, html.embed body { overflow-x: hidden; max-width: 100%; }
+    html.embed body { margin: 0; }
+    .repo-clone .Layout-main { padding-bottom: 48px; }
+  </style>
+</head>
+<body class="logged-in env-production page-responsive repo-clone">
+  <div id="mirror-banner">
+    <div>archived copy · <a id="back-home" href="#">back home</a></div>
+    <a id="mirror-banner-original" href="https://github.com/konradtabay/HighwayMergeDetector">see original page</a>
+  </div>
+
+  <header class="Header p-responsive" role="banner">
+    <div class="Header-item">
+      <a class="Header-link" href="https://github.com/" aria-label="Homepage"><svg aria-hidden="true" focusable="false" class="octicon octicon-mark-github color-fg-default" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" display="inline-block" overflow="visible" style="vertical-align:text-bottom"><path d="M12 1C5.923 1 1 5.923 1 12c0 4.867 3.149 8.979 7.521 10.443.55.102.756-.238.756-.53 0-.262-.01-1.137-.015-2.063-3.059.665-3.7-1.404-3.7-1.404-.503-1.278-1.226-1.63-1.226-1.63-.999-.683.076-.67.076-.67 1.104.078 1.685 1.134 1.685 1.134.982 1.682 2.574 1.196 3.202.914.1-.711.384-1.196.698-1.471-.972-.11-1.995-.486-1.995-2.17 0-.479.171-.87.453-1.179-.045-.11-.197-.556.043-1.158 0 0 .37-.119 1.212.45.351-.098.728-.147 1.103-.148.375 0 .752.05 1.104.148.842-.57 1.212-.45 1.212-.45.24.602.088 1.048.043 1.158.282.309.453.7.453 1.179 0 1.684-1.025 2.059-1.999 2.17.315.275.66.76.66 1.547 0 1.118-.01 2.016-.01 2.291 0 .295.203.637.761.529C20.852 20.979 24 16.867 24 12 24 5.923 19.077 1 13 1Z"></path></svg></a>
+    </div>
+    <div class="Header-item Header-item--full d-flex flex-justify-center">
+      <div class="form-control Header-input py-1 color-fg-muted width-full d-flex flex-items-center" style="max-width:272px;height:32px;">
+        <svg aria-hidden="true" focusable="false" class="octicon octicon-search color-fg-muted mr-2" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" display="inline-block" overflow="visible" style="vertical-align:text-bottom"><path d="M10.25 3a7.25 7.25 0 1 1-4.547 13.256.75.75 0 1 1 .828-1.242A5.75 5.75 0 1 0 4.75 8.5a.75.75 0 0 1-1.5 0 7.25 7.25 0 1 1 12.547 4.547l3.28 3.28a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215l-3.28-3.28A7.242 7.242 0 0 1 10.25 3Z"></path></svg><span class="text-small">Search or jump to...</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="application-main">
+    <main>
+      <div class="container-xl px-3 px-md-4 px-lg-5 mt-4">
+        <div class="d-flex flex-wrap flex-justify-between flex-items-start gap-2">
+          <div class="d-flex flex-items-center flex-auto min-width-0">
+            <img src="https://avatars.githubusercontent.com/u/145293044?v=4" alt="" width="24" height="24" class="avatar avatar-user mr-2" style="border-radius:50%" />
+            <h1 class="h2 lh-condensed flex-auto min-width-0 mr-2">
+              <a class="color-fg-default" href="https://github.com/konradtabay">konradtabay</a>
+              <span class="color-fg-muted">/</span>
+              <a class="color-fg-default" href="https://github.com/konradtabay/HighwayMergeDetector"><strong>HighwayMergeDetector</strong></a>
+            </h1>
+            <span class="Label Label--secondary v-align-middle ml-1">Public</span>
+          </div>
+          <div class="d-flex flex-shrink-0 gap-2">
+            <button class="btn btn-sm" type="button">Watch <span class="Counter">0</span></button>
+            <button class="btn btn-sm" type="button">Fork <span class="Counter">0</span></button>
+            <button class="btn btn-sm btn-primary" type="button">Star <span class="Counter">0</span></button>
+          </div>
+        </div>
+      </div>
+
+      <div class="container-xl px-3 px-md-4 px-lg-5">
+        <nav class="UnderlineNav width-full" aria-label="Repository">
+          <div class="UnderlineNav-body">
+            <a class="UnderlineNav-item selected" href="#"><svg aria-hidden="true" focusable="false" class="octicon octicon-code " viewBox="0 0 16 16" width="16" height="16" fill="currentColor" display="inline-block" overflow="visible" style="vertical-align:text-bottom"><path d="m11.28 3.22 4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.749.749 0 0 1-1.275-.326.749.749 0 0 1 .215-.734L13.94 8l-3.72-3.72a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215Zm-6.56 0a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042L2.06 8l3.72 3.72a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215L.47 8.53a.75.75 0 0 1 0-1.06Z"></path></svg> <span class="ml-1">Code</span></a>
+            <a class="UnderlineNav-item" href="#"><svg aria-hidden="true" focusable="false" class="octicon octicon-issue-opened " viewBox="0 0 16 16" width="16" height="16" fill="currentColor" display="inline-block" overflow="visible" style="vertical-align:text-bottom"><path d="M8 1.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm7.25.75v2.5a.75.75 0 0 0 1.5 0v-2.5a.75.75 0 0 0-1.5 0Zm0 5.25a.75.75 0 0 0 1.5 0v.5a.75.75 0 0 0-1.5 0Z"></path></svg> <span class="ml-1">Issues</span></a>
+            <a class="UnderlineNav-item" href="#"><svg aria-hidden="true" focusable="false" class="octicon octicon-git-pull-request " viewBox="0 0 16 16" width="16" height="16" fill="currentColor" display="inline-block" overflow="visible" style="vertical-align:text-bottom"><path d="M1.5 3.25a2.25 2.25 0 0 1 2.25-2.25h8.5A2.25 2.25 0 0 1 14.5 5.25v5.5a2.25 2.25 0 0 1-2.25 2.25h-8.5A2.25 2.25 0 0 1 1.5 10.75Zm2.25-.75a.75.75 0 0 0-.75.75v5.5c0 .414.336.75.75.75h8.5a.75.75 0 0 0 .75-.75v-5.5a.75.75 0 0 0-.75-.75Z"></path></svg> <span class="ml-1">Pull requests</span></a>
+            <a class="UnderlineNav-item" href="#"><svg aria-hidden="true" focusable="false" class="octicon octicon-play " viewBox="0 0 16 16" width="16" height="16" fill="currentColor" display="inline-block" overflow="visible" style="vertical-align:text-bottom"><path d="M2.75 2a.75.75 0 0 0-.75.75v10.5c0 .414.336.75.75.75h10.5a.75.75 0 0 0 .75-.75V2.75a.75.75 0 0 0-.75-.75ZM1 2.75C1 1.784 1.784 1 2.75 1h10.5c.966 0 1.75.784 1.75 1.75v10.5A1.75 1.75 0 0 1 13.25 15H2.75A1.75 1.75 0 0 1 1 13.25Z"></path></svg> <span class="ml-1">Actions</span></a>
+            <a class="UnderlineNav-item" href="#"><svg aria-hidden="true" focusable="false" class="octicon octicon-shield " viewBox="0 0 16 16" width="16" height="16" fill="currentColor" display="inline-block" overflow="visible" style="vertical-align:text-bottom"><path d="M7.467.133A1.75 1.75 0 0 1 8.534 0l6.25 1.675A1.75 1.75 0 0 1 16 3.275v5.296c0 3.708-2.56 6.704-6.25 7.951-3.69-1.247-6.25-4.243-6.25-7.95V3.275a1.75 1.75 0 0 1 1.216-1.642Zm1.034 1.05a.25.25 0 0 0-.268 0l-6.25 1.675a.25.25 0 0 0-.183.237v5.296c0 3.135 2.213 5.68 5.5 6.82 3.287-1.14 5.5-3.685 5.5-6.82V3.295a.25.25 0 0 0-.183-.237Z"></path></svg> <span class="ml-1">Security</span></a>
+            <a class="UnderlineNav-item" href="#"><svg aria-hidden="true" focusable="false" class="octicon octicon-graph " viewBox="0 0 16 16" width="16" height="16" fill="currentColor" display="inline-block" overflow="visible" style="vertical-align:text-bottom"><path d="M1.5 2.75a.25.25 0 0 1 .25-.25h8.5a.25.25 0 0 1 .25.25v5.5a.25.25 0 0 1-.25.25h-8.5a.25.25 0 0 1-.25-.25Zm2 4.25v-3h-1.5v3Zm1.5 0v-1.5h1.5v1.5Zm1.5 0v-3h1.5v3Zm1.5 0v-1.5h1.5v1.5Z"></path></svg> <span class="ml-1">Insights</span></a>
+          </div>
+        </nav>
+      </div>
+
+      <div class="container-xl px-3 px-md-4 px-lg-5 mt-4 Layout Layout--gutter-condensed">
+        <div class="Layout-main">
+          <div class="Box mb-3">
+            <div class="Box-header d-flex flex-items-center flex-justify-between px-3 py-2">
+              <div class="d-flex flex-items-center">
+                <button class="btn btn-sm mr-2" type="button"><svg aria-hidden="true" focusable="false" class="octicon octicon-git-branch " viewBox="0 0 16 16" width="16" height="16" fill="currentColor" display="inline-block" overflow="visible" style="vertical-align:text-bottom"><path d="M9.5 3.25a2.25 2.25 0 1 1 3 2.122V6A2.5 2.5 0 0 1 10 8.5H6a1 1 0 0 0-1 1v1.128a2.251 2.251 0 1 1-1.5 0V5.372a2.25 2.25 0 1 1 1.5 0v1.836A2.493 2.493 0 0 1 6 7h4a1 1 0 0 0 1-1v-.628A2.25 2.25 0 0 1 9.5 3.25Zm-6 0a.75.75 0 1 0 1.5 0 .75.75 0 0 0-1.5 0Zm8.25-.75a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5ZM4.25 12a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5Z"></path></svg> <span class="ml-1">main</span></button>
+                <span class="Link--secondary text-small ml-2">1 Branch</span>
+              </div>
+              <div class="d-flex gap-2">
+                <button class="btn btn-sm" type="button">Go to file</button>
+                <button class="btn btn-sm btn-primary" type="button">Code</button>
+              </div>
+            </div>
+            <div class="Box-row Box-row--gray d-flex flex-items-center px-3 py-2 text-small border-top-0">
+              <img src="https://avatars.githubusercontent.com/u/145293044?v=4" alt="" width="20" height="20" class="avatar avatar-user mr-1" style="border-radius:50%" />
+              <strong class="text-normal color-fg-default mr-1">Konrad Tabay</strong>
+              <span class="color-fg-muted text-truncate">NOT WORKING - TIM GAP BUGupdate highway merge detection features</span>
+              <a class="Link--muted mx-2" href="https://github.com/konradtabay/HighwayMergeDetector/commit/5bf738377a4fd65f3f238e65fbe5fddbe891d108">5bf7383</a>
+              <span class="color-fg-muted">· Dec 22, 2025</span>
+              <a class="Link--muted ml-3" href="https://github.com/konradtabay/HighwayMergeDetector/commits/main"><svg aria-hidden="true" focusable="false" class="octicon octicon-history " viewBox="0 0 16 16" width="16" height="16" fill="currentColor" display="inline-block" overflow="visible" style="vertical-align:text-bottom"><path d="M1.705 9.507a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.165l-.082.082a.75.75 0 0 1-.53.22H7.75a.75.75 0 0 1 0-1.5h2.551a.75.75 0 0 1 .53.22l2.83 2.83a.75.75 0 1 1-1.06 1.06l-2.83-2.83a.75.75 0 0 1-.22-.53V9.75a.75.75 0 0 1 1.5 0v1.19A7 7 0 0 1 1.05 8.925a.75.75 0 0 1 .656-.834ZM8.75 21a7 7 0 0 0 7-7v-1.19a.75.75 0 0 0-1.5 0V14a5.5 5.5 0 1 1-8.707-4.475.75.75 0 1 0 1.06-1.06A7 7 0 1 0 8.75 21Z"></path></svg> <span class="ml-1">7 Commits</span></a>
+            </div>
+            <div class="Box-row Box-row--hover-gray d-flex flex-items-center px-3 py-2 position-relative border-0">
+  <div class="flex-auto min-width-0 col-md-4">
+    <a class="d-flex flex-items-center Link--primary" href="https://github.com/konradtabay/HighwayMergeDetector/tree/main/core">
+      <svg aria-hidden="true" focusable="false" class="octicon octicon-file-directory-fill color-fg-muted" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" display="inline-block" overflow="visible" style="vertical-align:text-bottom"><path d="M1.75 1A1.75 1.75 0 0 0 0 2.75v10.5C0 14.216.784 15 1.75 15h12.5A1.75 1.75 0 0 0 16 13.25v-8.5A1.75 1.75 0 0 0 14.25 3H7.5a.25.25 0 0 1-.2-.1l-.9-1.2C6.07 1.26 5.55 1 5 1H1.75Z"></path></svg>
+      <span class="ml-2">core</span>
+    </a>
+  </div>
+  <div class="flex-auto min-width-0 col-md-5 color-fg-muted text-small text-truncate">NOT WORKING - TIM GAP BUGupdate highway merge detection features</div>
+  <div class="flex-shrink-0 text-right col-md-2 color-fg-muted text-small">Dec 22, 2025</div>
+  <div class="flex-shrink-0 text-right col-md-1"></div>
+</div>
+<div class="Box-row Box-row--hover-gray d-flex flex-items-center px-3 py-2 position-relative border-0">
+  <div class="flex-auto min-width-0 col-md-4">
+    <a class="d-flex flex-items-center Link--primary" href="https://github.com/konradtabay/HighwayMergeDetector/tree/main/data">
+      <svg aria-hidden="true" focusable="false" class="octicon octicon-file-directory-fill color-fg-muted" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" display="inline-block" overflow="visible" style="vertical-align:text-bottom"><path d="M1.75 1A1.75 1.75 0 0 0 0 2.75v10.5C0 14.216.784 15 1.75 15h12.5A1.75 1.75 0 0 0 16 13.25v-8.5A1.75 1.75 0 0 0 14.25 3H7.5a.25.25 0 0 1-.2-.1l-.9-1.2C6.07 1.26 5.55 1 5 1H1.75Z"></path></svg>
+      <span class="ml-2">data</span>
+    </a>
+  </div>
+  <div class="flex-auto min-width-0 col-md-5 color-fg-muted text-small text-truncate">NOT WORKING - TIM GAP BUGupdate highway merge detection features</div>
+  <div class="flex-shrink-0 text-right col-md-2 color-fg-muted text-small">Dec 22, 2025</div>
+  <div class="flex-shrink-0 text-right col-md-1"></div>
+</div>
+<div class="Box-row Box-row--hover-gray d-flex flex-items-center px-3 py-2 position-relative border-0">
+  <div class="flex-auto min-width-0 col-md-4">
+    <a class="d-flex flex-items-center Link--primary" href="https://github.com/konradtabay/HighwayMergeDetector/tree/main/docs">
+      <svg aria-hidden="true" focusable="false" class="octicon octicon-file-directory-fill color-fg-muted" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" display="inline-block" overflow="visible" style="vertical-align:text-bottom"><path d="M1.75 1A1.75 1.75 0 0 0 0 2.75v10.5C0 14.216.784 15 1.75 15h12.5A1.75 1.75 0 0 0 16 13.25v-8.5A1.75 1.75 0 0 0 14.25 3H7.5a.25.25 0 0 1-.2-.1l-.9-1.2C6.07 1.26 5.55 1 5 1H1.75Z"></path></svg>
+      <span class="ml-2">docs</span>
+    </a>
+  </div>
+  <div class="flex-auto min-width-0 col-md-5 color-fg-muted text-small text-truncate">NOT WORKING - TIM GAP BUGupdate highway merge detection features</div>
+  <div class="flex-shrink-0 text-right col-md-2 color-fg-muted text-small">Dec 22, 2025</div>
+  <div class="flex-shrink-0 text-right col-md-1"></div>
+</div>
+<div class="Box-row Box-row--hover-gray d-flex flex-items-center px-3 py-2 position-relative border-0">
+  <div class="flex-auto min-width-0 col-md-4">
+    <a class="d-flex flex-items-center Link--primary" href="https://github.com/konradtabay/HighwayMergeDetector/tree/main/input">
+      <svg aria-hidden="true" focusable="false" class="octicon octicon-file-directory-fill color-fg-muted" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" display="inline-block" overflow="visible" style="vertical-align:text-bottom"><path d="M1.75 1A1.75 1.75 0 0 0 0 2.75v10.5C0 14.216.784 15 1.75 15h12.5A1.75 1.75 0 0 0 16 13.25v-8.5A1.75 1.75 0 0 0 14.25 3H7.5a.25.25 0 0 1-.2-.1l-.9-1.2C6.07 1.26 5.55 1 5 1H1.75Z"></path></svg>
+      <span class="ml-2">input</span>
+    </a>
+  </div>
+  <div class="flex-auto min-width-0 col-md-5 color-fg-muted text-small text-truncate">NOT WORKING - TIM GAP BUGupdate highway merge detection features</div>
+  <div class="flex-shrink-0 text-right col-md-2 color-fg-muted text-small">Dec 22, 2025</div>
+  <div class="flex-shrink-0 text-right col-md-1"></div>
+</div>
+<div class="Box-row Box-row--hover-gray d-flex flex-items-center px-3 py-2 position-relative border-0">
+  <div class="flex-auto min-width-0 col-md-4">
+    <a class="d-flex flex-items-center Link--primary" href="https://github.com/konradtabay/HighwayMergeDetector/tree/main/setup">
+      <svg aria-hidden="true" focusable="false" class="octicon octicon-file-directory-fill color-fg-muted" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" display="inline-block" overflow="visible" style="vertical-align:text-bottom"><path d="M1.75 1A1.75 1.75 0 0 0 0 2.75v10.5C0 14.216.784 15 1.75 15h12.5A1.75 1.75 0 0 0 16 13.25v-8.5A1.75 1.75 0 0 0 14.25 3H7.5a.25.25 0 0 1-.2-.1l-.9-1.2C6.07 1.26 5.55 1 5 1H1.75Z"></path></svg>
+      <span class="ml-2">setup</span>
+    </a>
+  </div>
+  <div class="flex-auto min-width-0 col-md-5 color-fg-muted text-small text-truncate">NOT WORKING - TIM GAP BUGupdate highway merge detection features</div>
+  <div class="flex-shrink-0 text-right col-md-2 color-fg-muted text-small">Dec 22, 2025</div>
+  <div class="flex-shrink-0 text-right col-md-1"></div>
+</div>
+<div class="Box-row Box-row--hover-gray d-flex flex-items-center px-3 py-2 position-relative border-0">
+  <div class="flex-auto min-width-0 col-md-4">
+    <a class="d-flex flex-items-center Link--primary" href="https://github.com/konradtabay/HighwayMergeDetector/tree/main/tests">
+      <svg aria-hidden="true" focusable="false" class="octicon octicon-file-directory-fill color-fg-muted" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" display="inline-block" overflow="visible" style="vertical-align:text-bottom"><path d="M1.75 1A1.75 1.75 0 0 0 0 2.75v10.5C0 14.216.784 15 1.75 15h12.5A1.75 1.75 0 0 0 16 13.25v-8.5A1.75 1.75 0 0 0 14.25 3H7.5a.25.25 0 0 1-.2-.1l-.9-1.2C6.07 1.26 5.55 1 5 1H1.75Z"></path></svg>
+      <span class="ml-2">tests</span>
+    </a>
+  </div>
+  <div class="flex-auto min-width-0 col-md-5 color-fg-muted text-small text-truncate">NOT WORKING - TIM GAP BUGupdate highway merge detection features</div>
+  <div class="flex-shrink-0 text-right col-md-2 color-fg-muted text-small">Dec 22, 2025</div>
+  <div class="flex-shrink-0 text-right col-md-1"></div>
+</div>
+<div class="Box-row Box-row--hover-gray d-flex flex-items-center px-3 py-2 position-relative border-0">
+  <div class="flex-auto min-width-0 col-md-4">
+    <a class="d-flex flex-items-center Link--primary" href="https://github.com/konradtabay/HighwayMergeDetector/tree/main/.env">
+      <svg aria-hidden="true" focusable="false" class="octicon octicon-file " viewBox="0 0 16 16" width="16" height="16" fill="currentColor" display="inline-block" overflow="visible" style="vertical-align:text-bottom"><path d="M2 1.75C2 .784 2.784 0 3.75 0h6.586c.464 0 .909.184 1.237.513l2.914 2.914c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 13.25 16h-9.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h9.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 9.5 4.25V1.5Z"></path></svg>
+      <span class="ml-2">.env</span>
+    </a>
+  </div>
+  <div class="flex-auto min-width-0 col-md-5 color-fg-muted text-small text-truncate">NOT WORKING - TIM GAP BUGupdate highway merge detection features</div>
+  <div class="flex-shrink-0 text-right col-md-2 color-fg-muted text-small">Dec 22, 2025</div>
+  <div class="flex-shrink-0 text-right col-md-1"><span class="text-sm color-fg-muted">177 Bytes</span></div>
+</div>
+<div class="Box-row Box-row--hover-gray d-flex flex-items-center px-3 py-2 position-relative border-0">
+  <div class="flex-auto min-width-0 col-md-4">
+    <a class="d-flex flex-items-center Link--primary" href="https://github.com/konradtabay/HighwayMergeDetector/tree/main/.gitignore">
+      <svg aria-hidden="true" focusable="false" class="octicon octicon-file " viewBox="0 0 16 16" width="16" height="16" fill="currentColor" display="inline-block" overflow="visible" style="vertical-align:text-bottom"><path d="M2 1.75C2 .784 2.784 0 3.75 0h6.586c.464 0 .909.184 1.237.513l2.914 2.914c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 13.25 16h-9.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h9.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 9.5 4.25V1.5Z"></path></svg>
+      <span class="ml-2">.gitignore</span>
+    </a>
+  </div>
+  <div class="flex-auto min-width-0 col-md-5 color-fg-muted text-small text-truncate">NOT WORKING - TIM GAP BUGupdate highway merge detection features</div>
+  <div class="flex-shrink-0 text-right col-md-2 color-fg-muted text-small">Dec 22, 2025</div>
+  <div class="flex-shrink-0 text-right col-md-1"><span class="text-sm color-fg-muted">450 Bytes</span></div>
+</div>
+<div class="Box-row Box-row--hover-gray d-flex flex-items-center px-3 py-2 position-relative border-0">
+  <div class="flex-auto min-width-0 col-md-4">
+    <a class="d-flex flex-items-center Link--primary" href="https://github.com/konradtabay/HighwayMergeDetector/tree/main/convert_csv_to_gpx.py">
+      <svg aria-hidden="true" focusable="false" class="octicon octicon-file " viewBox="0 0 16 16" width="16" height="16" fill="currentColor" display="inline-block" overflow="visible" style="vertical-align:text-bottom"><path d="M2 1.75C2 .784 2.784 0 3.75 0h6.586c.464 0 .909.184 1.237.513l2.914 2.914c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 13.25 16h-9.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h9.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 9.5 4.25V1.5Z"></path></svg>
+      <span class="ml-2">convert_csv_to_gpx.py</span>
+    </a>
+  </div>
+  <div class="flex-auto min-width-0 col-md-5 color-fg-muted text-small text-truncate">NOT WORKING - TIM GAP BUGupdate highway merge detection features</div>
+  <div class="flex-shrink-0 text-right col-md-2 color-fg-muted text-small">Dec 22, 2025</div>
+  <div class="flex-shrink-0 text-right col-md-1"><span class="text-sm color-fg-muted">2,498 Bytes</span></div>
+</div>
+<div class="Box-row Box-row--hover-gray d-flex flex-items-center px-3 py-2 position-relative border-0">
+  <div class="flex-auto min-width-0 col-md-4">
+    <a class="d-flex flex-items-center Link--primary" href="https://github.com/konradtabay/HighwayMergeDetector/tree/main/convert_q01.py">
+      <svg aria-hidden="true" focusable="false" class="octicon octicon-file " viewBox="0 0 16 16" width="16" height="16" fill="currentColor" display="inline-block" overflow="visible" style="vertical-align:text-bottom"><path d="M2 1.75C2 .784 2.784 0 3.75 0h6.586c.464 0 .909.184 1.237.513l2.914 2.914c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 13.25 16h-9.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h9.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 9.5 4.25V1.5Z"></path></svg>
+      <span class="ml-2">convert_q01.py</span>
+    </a>
+  </div>
+  <div class="flex-auto min-width-0 col-md-5 color-fg-muted text-small text-truncate">NOT WORKING - TIM GAP BUGupdate highway merge detection features</div>
+  <div class="flex-shrink-0 text-right col-md-2 color-fg-muted text-small">Dec 22, 2025</div>
+  <div class="flex-shrink-0 text-right col-md-1"><span class="text-sm color-fg-muted">6,341 Bytes</span></div>
+</div>
+<div class="Box-row Box-row--hover-gray d-flex flex-items-center px-3 py-2 position-relative border-0">
+  <div class="flex-auto min-width-0 col-md-4">
+    <a class="d-flex flex-items-center Link--primary" href="https://github.com/konradtabay/HighwayMergeDetector/tree/main/README.md">
+      <svg aria-hidden="true" focusable="false" class="octicon octicon-file " viewBox="0 0 16 16" width="16" height="16" fill="currentColor" display="inline-block" overflow="visible" style="vertical-align:text-bottom"><path d="M2 1.75C2 .784 2.784 0 3.75 0h6.586c.464 0 .909.184 1.237.513l2.914 2.914c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 13.25 16h-9.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h9.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 9.5 4.25V1.5Z"></path></svg>
+      <span class="ml-2">README.md</span>
+    </a>
+  </div>
+  <div class="flex-auto min-width-0 col-md-5 color-fg-muted text-small text-truncate">NOT WORKING - TIM GAP BUGupdate highway merge detection features</div>
+  <div class="flex-shrink-0 text-right col-md-2 color-fg-muted text-small">Dec 22, 2025</div>
+  <div class="flex-shrink-0 text-right col-md-1"><span class="text-sm color-fg-muted">2,987 Bytes</span></div>
+</div>
+<div class="Box-row Box-row--hover-gray d-flex flex-items-center px-3 py-2 position-relative border-0">
+  <div class="flex-auto min-width-0 col-md-4">
+    <a class="d-flex flex-items-center Link--primary" href="https://github.com/konradtabay/HighwayMergeDetector/tree/main/run_detection.py">
+      <svg aria-hidden="true" focusable="false" class="octicon octicon-file " viewBox="0 0 16 16" width="16" height="16" fill="currentColor" display="inline-block" overflow="visible" style="vertical-align:text-bottom"><path d="M2 1.75C2 .784 2.784 0 3.75 0h6.586c.464 0 .909.184 1.237.513l2.914 2.914c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 13.25 16h-9.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h9.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 9.5 4.25V1.5Z"></path></svg>
+      <span class="ml-2">run_detection.py</span>
+    </a>
+  </div>
+  <div class="flex-auto min-width-0 col-md-5 color-fg-muted text-small text-truncate">NOT WORKING - TIM GAP BUGupdate highway merge detection features</div>
+  <div class="flex-shrink-0 text-right col-md-2 color-fg-muted text-small">Dec 22, 2025</div>
+  <div class="flex-shrink-0 text-right col-md-1"><span class="text-sm color-fg-muted">2,214 Bytes</span></div>
+</div>
+          </div>
+          <div class="Box">
+            <div class="Box-header d-flex flex-items-center px-3 py-2"><svg aria-hidden="true" focusable="false" class="octicon octicon-repo " viewBox="0 0 16 16" width="16" height="16" fill="currentColor" display="inline-block" overflow="visible" style="vertical-align:text-bottom"><path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8ZM5 12.25a.25.25 0 0 1 .25-.25h3.5a.25.25 0 0 1 .25.25v3.25a.25.25 0 0 1-.4.2l-1.45-1.087a.249.249 0 0 0-.3 0L5.4 15.7a.25.25 0 0 1-.4-.2Z"></path></svg><h2 class="h4 mb-0 ml-2">README.md</h2></div>
+            <div class="Box-body px-0 pt-0 pb-0"><div id="readme" class="md" data-path="README.md"><article class="markdown-body entry-content container-lg" itemprop="text"><div class="markdown-heading" dir="auto"><h1 class="heading-element" dir="auto">Highway Ramp Detection System</h1><a id="user-content-highway-ramp-detection-system" class="anchor" aria-label="Permalink: Highway Ramp Detection System" href="#highway-ramp-detection-system"><svg data-component="Octicon" class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><strong>Production-ready system for automated highway on/off ramp detection</strong></p>
+<p dir="auto">By Konrad Tabay - <a href="mailto:tabay.konrad@gmail.com">tabay.konrad@gmail.com</a></p>
+<hr>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Quick Start</h2><a id="user-content-quick-start" class="anchor" aria-label="Permalink: Quick Start" href="#quick-start"><svg data-component="Octicon" class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<div class="highlight highlight-source-shell notranslate position-relative overflow-auto" dir="auto" data-snippet-clipboard-copy-content="# 1. Install dependencies
+pip install flask
+
+# 2. Analyze a GPS trip
+python core/highway_ramp_detector.py input/your_trip.gpx
+
+# 3. Batch process multiple trips
+python core/batch_process_trips.py --input-dir input --output-dir output/batch
+
+# 4. View results
+python core/visualize_server.py
+# Open: http://localhost:5000"><pre><span class="pl-c"><span class="pl-c">#</span> 1. Install dependencies</span>
+pip install flask
+
+<span class="pl-c"><span class="pl-c">#</span> 2. Analyze a GPS trip</span>
+python core/highway_ramp_detector.py input/your_trip.gpx
+
+<span class="pl-c"><span class="pl-c">#</span> 3. Batch process multiple trips</span>
+python core/batch_process_trips.py --input-dir input --output-dir output/batch
+
+<span class="pl-c"><span class="pl-c">#</span> 4. View results</span>
+python core/visualize_server.py
+<span class="pl-c"><span class="pl-c">#</span> Open: http://localhost:5000</span></pre></div>
+<hr>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Features</h2><a id="user-content-features" class="anchor" aria-label="Permalink: Features" href="#features"><svg data-component="Octicon" class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">✅ <strong>Multi-layered Detection</strong></p>
+<ul dir="auto">
+<li>GPS speed pattern analysis</li>
+<li>Road geometry (bearing changes)</li>
+<li>OpenStreetMap infrastructure verification</li>
+<li>Automatic OSM caching for any region</li>
+</ul>
+<p dir="auto">✅ <strong>High Accuracy</strong></p>
+<ul dir="auto">
+<li>OSM proximity required (no false positives)</li>
+<li>Confidence scoring with edge case handling</li>
+<li>Smart deduplication (keeps strongest signals)</li>
+<li>Segment-based detection (full maneuver capture)</li>
+</ul>
+<p dir="auto">✅ <strong>Scalable</strong></p>
+<ul dir="auto">
+<li>Batch processing for thousands of trips</li>
+<li>Interactive Flask visualization</li>
+<li>Handles 1Hz GPS data</li>
+<li>Optimized for Ottawa (656 OSM ramps)</li>
+</ul>
+<hr>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Project Structure</h2><a id="user-content-project-structure" class="anchor" aria-label="Permalink: Project Structure" href="#project-structure"><svg data-component="Octicon" class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto" data-snippet-clipboard-copy-content="driver-test/
+├── core/                           # Core System
+│   ├── highway_ramp_detector.py   # Main analysis engine
+│   ├── batch_process_trips.py     # Batch processing
+│   └── visualize_server.py        # Web visualization
+├── docs/                           # Documentation
+│   ├── README.md                  # Main documentation
+│   ├── QUICK_START.md             # 5-minute guide
+│   ├── DETECTION_WEIGHTS_ANALYSIS.md  # Weight optimization
+│   └── [other docs...]
+├── setup/                          # Setup &amp; Configuration
+│   ├── requirements.txt
+│   ├── setup.bat / setup.sh
+│   └── LICENSE
+├── input/                          # Input GPS files
+├── output/                         # Analysis results
+└── data/                          # Cached OSM data"><pre class="notranslate"><code>driver-test/
+├── core/                           # Core System
+│   ├── highway_ramp_detector.py   # Main analysis engine
+│   ├── batch_process_trips.py     # Batch processing
+│   └── visualize_server.py        # Web visualization
+├── docs/                           # Documentation
+│   ├── README.md                  # Main documentation
+│   ├── QUICK_START.md             # 5-minute guide
+│   ├── DETECTION_WEIGHTS_ANALYSIS.md  # Weight optimization
+│   └── [other docs...]
+├── setup/                          # Setup &amp; Configuration
+│   ├── requirements.txt
+│   ├── setup.bat / setup.sh
+│   └── LICENSE
+├── input/                          # Input GPS files
+├── output/                         # Analysis results
+└── data/                          # Cached OSM data
+</code></pre></div>
+<hr>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Documentation</h2><a id="user-content-documentation" class="anchor" aria-label="Permalink: Documentation" href="#documentation"><svg data-component="Octicon" class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<ul dir="auto">
+<li><strong><a href="docs/README.md">Full Documentation</a></strong> - Complete user guide</li>
+<li><strong><a href="docs/QUICK_START.md">Quick Start</a></strong> - Get running in 5 minutes</li>
+<li><strong><a href="docs/DETECTION_WEIGHTS_ANALYSIS.md">Weight Analysis</a></strong> - Detection algorithm details</li>
+<li><strong><a href="docs/BATCH_PROCESSING_README.md">Batch Processing</a></strong> - Scale to thousands of trips</li>
+<li><strong><a href="docs/DEPLOYMENT_PACKAGE.md">Deployment</a></strong> - Production deployment guide</li>
+</ul>
+<hr>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Detection Performance (Ottawa Region)</h2><a id="user-content-detection-performance-ottawa-region" class="anchor" aria-label="Permalink: Detection Performance (Ottawa Region)" href="#detection-performance-ottawa-region"><svg data-component="Octicon" class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<markdown-accessiblity-table><table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>OSM Ramps Mapped</strong></td>
+<td>656 ramps</td>
+</tr>
+<tr>
+<td><strong>Detection Accuracy</strong></td>
+<td>100% (4/4 real trips)</td>
+</tr>
+<tr>
+<td><strong>False Positives</strong></td>
+<td>0 (after filtering)</td>
+</tr>
+<tr>
+<td><strong>Avg Confidence</strong></td>
+<td>100%</td>
+</tr>
+<tr>
+<td><strong>On-Ramp Speed Change</strong></td>
+<td>+67 km/h avg</td>
+</tr>
+<tr>
+<td><strong>Off-Ramp Speed Change</strong></td>
+<td>-70 km/h avg</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<hr>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">Requirements</h2><a id="user-content-requirements" class="anchor" aria-label="Permalink: Requirements" href="#requirements"><svg data-component="Octicon" class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<ul dir="auto">
+<li>Python 3.7+</li>
+<li>Flask (for visualization)</li>
+<li>No other dependencies (uses standard library)</li>
+</ul>
+<hr>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">License</h2><a id="user-content-license" class="anchor" aria-label="Permalink: License" href="#license"><svg data-component="Octicon" class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto">MIT License - See <a href="setup/LICENSE">setup/LICENSE</a></p>
+<hr>
+<div class="markdown-heading" dir="auto"><h2 class="heading-element" dir="auto">GitHub</h2><a id="user-content-github" class="anchor" aria-label="Permalink: GitHub" href="#github"><svg data-component="Octicon" class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><a href="https://github.com/konradtabay/HighwayMergeDetector">https://github.com/konradtabay/HighwayMergeDetector</a></p>
+</article></div></div>
+          </div>
+        </div>
+        <div class="Layout-sidebar">
+          <div class="BorderGrid about-margin">
+            <div class="BorderGrid-row"><div class="BorderGrid-cell">
+              <h2 class="h4 mb-3">About</h2>
+              <p class="color-fg-muted mb-3">Production-ready system for automated highway on/off ramp detection.</p>
+              <div class="mt-2"><span class="text-small color-fg-muted">Dec 22, 2025</span></div>
+              <h3 class="sr-only">Languages</h3>
+              <ul class="list-style-none mt-3"><li><span class="color-fg-default text-small mr-1">Python</span>
+              <span class="Progress mt-1"><span class="Progress-item bg-accent-emphasis" style="width:100%"></span></span></li></ul>
+            </div></div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+  <script>
+    window.addEventListener("load", function () {
+      var embedded = /(?:^|[?&])embed=1(?:&|$)/.test(window.location.search);
+      var banner = document.getElementById("mirror-banner");
+      if (embedded && banner) banner.style.display = "none";
+      var home = document.getElementById("back-home");
+      if (home) home.href = window.location.origin + "/";
+      if (embedded) document.documentElement.classList.add("embed");
+    });
+  </script>
+</body>
+</html>

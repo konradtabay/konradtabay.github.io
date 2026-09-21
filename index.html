@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="static/favicon.svg" type="image/svg+xml" />
     <title></title>
     <style>
       :root {
@@ -73,24 +74,24 @@
         z-index: 50;
       }
 
-      #nav-projects {
+      #nav-email {
         left: 1025px;
       }
 
-      #nav-email {
-        left: 1134px;
-      }
-
       #nav-linkedin {
-        left: 1231px;
+        left: calc(1025px + var(--nav-slot-width));
       }
 
       #nav-x {
-        left: 1351px;
+        left: calc(1025px + var(--nav-slot-width) * 2 + 22px);
       }
 
       #nav-resume {
-        left: 1434px;
+        left: calc(1025px + var(--nav-slot-width) * 3);
+      }
+
+      #nav-github {
+        left: calc(1025px + var(--nav-slot-width) * 4);
       }
 
       #wrapper {
@@ -116,29 +117,54 @@
         margin-bottom: 0;
       }
 
-      #stick-figure {
+      .timeline-muted {
+        color: rgba(255, 255, 255, 0.55);
+      }
+
+      .timeline-fade {
+        background: linear-gradient(
+          90deg,
+          #fff 0%,
+          #fff 12%,
+          rgba(255, 255, 255, 0.55) 72%
+        );
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        color: transparent;
+      }
+
+      #stick-figure-frame {
         position: fixed;
-        left: 255px;
-        top: 520px;
+        left: 296px;
+        top: 529px;
+        width: 360px;
+        height: 185px;
+        overflow: hidden;
+        transform: translateY(-72.5%);
+        z-index: 90;
+        pointer-events: none;
+      }
+
+      #stick-figure {
+        position: absolute;
+        left: 0;
+        top: 0;
         height: 185px;
         width: auto;
-        opacity: 1;
-        transform: translateY(-72.5%);
         pointer-events: none;
-        z-index: 90;
       }
 
       #ascii-brain {
         position: fixed;
-        left: 50%;
-        top: 46%;
+        left: 550px;
+        top: 128px;
         z-index: 1;
-        width: min(88vw, 1080px);
-        height: min(70vh, 720px);
+        width: 788px;
+        height: 525px;
         margin: 0;
         padding: 0;
         overflow: hidden;
-        transform: translate(-50%, -52%);
         font-family: "Courier New", Courier, monospace;
         font-size: 13px;
         line-height: 13px;
@@ -150,58 +176,356 @@
         white-space: pre;
         text-align: left;
       }
+
+      #brain-caption {
+        position: fixed;
+        left: 550px;
+        top: 698px;
+        z-index: 2;
+        width: 788px;
+        margin: 0;
+        padding: 0;
+        font-family: Geneva, Arial, sans-serif;
+        font-size: calc(9px * var(--font-scale));
+        line-height: 2;
+        color: #fff;
+        text-align: center;
+        text-transform: lowercase;
+      }
+
+      #brain-caption p {
+        margin: 0 auto 1.5em;
+        max-width: 520px;
+      }
+
+      #brain-caption p:last-child {
+        margin-bottom: 0;
+      }
+
+      #stage {
+        display: none;
+        position: fixed;
+        left: 550px;
+        top: 128px;
+        z-index: 5;
+        width: 788px;
+        height: calc(100dvh - 148px);
+        flex-direction: column;
+      }
+
+      #stage.is-open {
+        display: flex;
+      }
+
+      body[data-pane] #ascii-brain,
+      body[data-pane] #brain-caption {
+        display: none;
+      }
+
+      body[data-pane="mountains"] a[data-pane="mountains"],
+      body[data-pane="cooking"] a[data-pane="cooking"],
+      body[data-pane="track-field"] a[data-pane="track-field"],
+      body[data-pane="georg-northoff"] a[data-pane="georg-northoff"] {
+        text-decoration: underline;
+      }
+
+      #stage-header {
+        flex: 0 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+        margin: 0 0 12px;
+        text-transform: lowercase;
+      }
+
+      #stage-back,
+      #stage-original {
+        margin: 0;
+      }
+
+      #stage-original {
+        display: none;
+      }
+
+      body[data-pane="track-field"] #stage-original,
+      body[data-pane="georg-northoff"] #stage-original {
+        display: block;
+      }
+
+      #stage-body {
+        flex: 1 1 auto;
+        overflow: auto;
+      }
+
+      #stage-body.reel-scroll {
+        overflow-y: auto;
+        scroll-snap-type: y mandatory;
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+      }
+
+      #stage-body.reel-scroll::-webkit-scrollbar {
+        display: none;
+      }
+
+      .reel-slide {
+        scroll-snap-align: start;
+        scroll-snap-stop: always;
+        min-height: 100%;
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 8px 0 24px;
+      }
+
+      .reel-slide-label {
+        position: absolute;
+        top: 12px;
+        left: 0;
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: bold;
+        font-size: calc(9px * var(--font-scale));
+        line-height: calc(15px * var(--font-scale));
+        text-transform: lowercase;
+        color: rgba(255, 255, 255, 0.72);
+        pointer-events: none;
+      }
+
+      .reel-slide-inner {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        max-width: 560px;
+      }
+
+      #stage-body img,
+      #stage-body video {
+        display: block;
+        width: auto;
+        height: auto;
+        max-width: 560px;
+        max-height: calc(100dvh - 230px);
+        object-fit: contain;
+        margin: 0 0 22px;
+      }
+
+      #stage-body.reel-scroll img,
+      #stage-body.reel-scroll video {
+        margin: 0;
+        max-height: calc(100dvh - 250px);
+      }
+
+      #stage-body video {
+        aspect-ratio: 9 / 16;
+      }
+
+      #stage-body img:last-child,
+      #stage-body video:last-child {
+        margin-bottom: 0;
+      }
+
+      .stage-embed {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+      }
+
+      .stage-embed iframe {
+        display: block;
+        width: 100%;
+        height: 100%;
+        border: 0;
+        background: #fff;
+      }
+
+      body[data-pane="track-field"] #stage-body,
+      body[data-pane="georg-northoff"] #stage-body {
+        overflow: hidden;
+      }
+
     </style>
     <script type="importmap">
       {
         "imports": {
-          "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js"
+          "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+          "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
         }
       }
     </script>
   </head>
   <body>
     <pre id="ascii-brain" aria-hidden="true"></pre>
+    <div id="brain-caption">
+      <p>
+        i adapt sota brain-encoding models to differentiate healthy from
+        psychiatric patients, with
+        <a href="#georg-northoff" data-pane="georg-northoff">georg northoff</a>
+      </p>
+      <p>publication coming soon</p>
+    </div>
     <div id="head">
       <div id="head-title">
         <a class="head-link" href="/">Konrad Tabay</a>
       </div>
     </div>
 
-    <a class="nav-item" id="nav-projects" href="#">projects</a>
-    <a class="nav-item" id="nav-email" href="#">email</a>
-    <a class="nav-item" id="nav-linkedin" href="#">linkedin</a>
-    <a class="nav-item" id="nav-x" href="#">x</a>
-    <a class="nav-item" id="nav-resume" href="#">resume</a>
+    <a class="nav-item" id="nav-email" href="mailto:tabay.konrad@gmail.com">email</a>
+    <a class="nav-item" id="nav-linkedin" href="https://www.linkedin.com/in/konradtabay" target="_blank" rel="noopener noreferrer">linkedin</a>
+    <a class="nav-item" id="nav-x" href="https://x.com/KonradTabay" target="_blank" rel="noopener noreferrer">x</a>
+    <a class="nav-item" id="nav-resume" href="https://docs.google.com/document/d/1_QLXhdrhFKY_d9-yfl9CHEcNynZkKvHH/preview" target="_blank" rel="noopener noreferrer">resume</a>
+    <a class="nav-item" id="nav-github" href="https://github.com/konradtabay" target="_blank" rel="noopener noreferrer">github</a>
     <div class="nav-ruler" id="nav-ruler" aria-hidden="true"></div>
 
-    <video
-      id="stick-figure"
-      autoplay
-      loop
-      muted
-      playsinline
-      aria-hidden="true"
-    >
-      <source
-        src="static/video/stick-figure-loop.webm"
-        type="video/webm"
-      />
-    </video>
+    <div id="stick-figure-frame">
+      <video
+        id="stick-figure"
+        autoplay
+        loop
+        muted
+        playsinline
+        aria-hidden="true"
+      >
+        <source
+          src="static/video/stick-figure-loop.webm"
+          type="video/webm"
+        />
+      </video>
+    </div>
 
     <div id="wrapper">
       <p>
         i currently study systems design engineering at university of
-        waterloo. i've previously worked on software at melius, textql, ownr,
-        and rbc and enjoy product engineering.
+        waterloo, i've worked on ml with
+        <a href="#georg-northoff" data-pane="georg-northoff">georg northoff</a>, swe at
+        carleton university, and built
+        <a href="https://kalvo.io/" target="_blank" rel="noopener noreferrer"
+          >kalvo</a
+        >
       </p>
       <p>
-        in my free time, i enjoy writing blogs like
-        <a href="#">why ontology for text-to-sql?</a> and building cool things
-        such as <a href="#">metallic blob</a> and
-        <a href="#">tiktok view predictor</a>.
+        in my free time, i love
+        <a href="#mountains" data-pane="mountains">mountains</a>,
+        <a href="#cooking" data-pane="cooking">cooking</a>, and racing in
+        <a href="#track-field" data-pane="track-field">track and field</a>
       </p>
-      <p>before i decided to go into engineering, i made lots of art..</p>
+      <p>
+        my life timeline:<br />
+        <span class="timeline-fade">reach the frontier of ml</span> -&gt;
+        <span class="timeline-muted">startup</span> -&gt;
+        <span class="timeline-muted">have 6 kids</span>
+      </p>
     </div>
+
+    <div id="stage">
+      <div id="stage-header">
+        <p id="stage-back"><a href="./">back</a></p>
+        <p id="stage-original">
+          <a
+            href="https://orleansonline.ca/pages/S2023052501.htm"
+            target="_blank"
+            rel="noopener noreferrer"
+            >see original page</a
+          >
+        </p>
+      </div>
+      <div id="stage-body"></div>
+    </div>
+
+    <template id="pane-gallery-reel">
+      <section class="reel-slide" data-section="mountains">
+        <div class="reel-slide-inner">
+          <p class="reel-slide-label">mountains</p>
+          <video muted loop playsinline poster="static/img/mountains/clip-4504.jpg">
+            <source src="static/video/mountains/clip-4504.mp4" type="video/mp4" />
+          </video>
+        </div>
+      </section>
+      <section class="reel-slide" data-section="mountains">
+        <div class="reel-slide-inner">
+          <img src="static/img/mountains/hike.jpg" alt="" />
+        </div>
+      </section>
+      <section class="reel-slide" data-section="mountains">
+        <div class="reel-slide-inner">
+          <img src="static/img/mountains/ski-ridge.jpg" alt="" />
+        </div>
+      </section>
+      <section class="reel-slide" data-section="mountains">
+        <div class="reel-slide-inner">
+          <img src="static/img/mountains/fjord-boat.jpg" alt="" />
+        </div>
+      </section>
+      <section class="reel-slide" data-section="mountains">
+        <div class="reel-slide-inner">
+          <video muted loop playsinline poster="static/img/mountains/clip-2396.jpg">
+            <source src="static/video/mountains/clip-2396.mp4" type="video/mp4" />
+          </video>
+        </div>
+      </section>
+      <section class="reel-slide" data-section="mountains">
+        <div class="reel-slide-inner">
+          <img src="static/img/mountains/dirt-bike.jpg" alt="" />
+        </div>
+      </section>
+      <section class="reel-slide" data-section="mountains">
+        <div class="reel-slide-inner">
+          <img src="static/img/mountains/machu-picchu.jpg" alt="" />
+        </div>
+      </section>
+      <section class="reel-slide" data-section="mountains">
+        <div class="reel-slide-inner">
+          <img src="static/img/mountains/iceland-river.jpg" alt="" />
+        </div>
+      </section>
+      <section class="reel-slide" data-section="mountains">
+        <div class="reel-slide-inner">
+          <img src="static/img/mountains/alpine-range.jpg" alt="" />
+        </div>
+      </section>
+      <section class="reel-slide" data-section="cooking">
+        <div class="reel-slide-inner">
+          <p class="reel-slide-label">cooking</p>
+          <img src="static/img/cooking/rice-plate.jpg" alt="" />
+        </div>
+      </section>
+      <section class="reel-slide" data-section="cooking">
+        <div class="reel-slide-inner">
+          <img src="static/img/cooking/steak-breakfast.jpg" alt="" />
+        </div>
+      </section>
+      <section class="reel-slide" data-section="cooking">
+        <div class="reel-slide-inner">
+          <img src="static/img/cooking/firepit-steaks.jpg" alt="" />
+        </div>
+      </section>
+    </template>
+
+    <template id="pane-track-field">
+      <div class="stage-embed">
+        <iframe
+          src="track-field.html?embed=1"
+          title="East end athletes shine at high school track and field championships"
+        ></iframe>
+      </div>
+    </template>
+
+    <template id="pane-georg-northoff">
+      <div class="stage-embed">
+        <iframe
+          src="georg-northoff.html?embed=1"
+          title="Georg Northoff - Google Scholar"
+        ></iframe>
+      </div>
+    </template>
+
+    <!-- Brain mesh: "Lobes of the Cerebrum" by Anat2022, CC BY 4.0. https://sketchfab.com/3d-models/lobes-of-the-cerebrum-2d4eccc2e6624aed8b78c70a075c8ed6 -->
     <script type="module" src="static/js/ascii-brain.js"></script>
+    <script src="static/js/stage.js"></script>
   </body>
 </html>
