@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title></title>
     <style>
+      :root {
+        --font-scale: 1.35;
+        --nav-slot-width: 102px;
+      }
+
       html,
       body {
         margin: 0;
@@ -15,7 +20,7 @@
 
       body {
         font-family: Geneva, Arial, sans-serif;
-        font-size: 9px;
+        font-size: calc(9px * var(--font-scale));
         line-height: 2;
         color: #fff;
         text-align: left;
@@ -30,26 +35,14 @@
         text-decoration: underline;
       }
 
-      table {
-        border-collapse: collapse;
-        border-spacing: 0;
-      }
-
-      th,
-      td {
-        padding: 0;
-        vertical-align: top;
-      }
-
-      .head-menu-table td {
-        width: 102px;
-      }
-
       #head {
+        position: relative;
+        z-index: 20;
         padding: 22px 25px 0;
         font-family: Arial, Helvetica, sans-serif;
         font-weight: bold;
-        line-height: 15px;
+        line-height: calc(15px * var(--font-scale));
+        background-color: #135bd6;
       }
 
       #head a {
@@ -60,131 +53,155 @@
         margin-bottom: 20px;
       }
 
-      #head-menu2 {
-        margin-top: 20px;
-      }
-
-      #head-menu3 {
-        margin-top: 18px;
-        font-weight: normal;
-        line-height: 12px;
-        font-size: 8px;
+      .nav-item {
+        position: fixed;
+        top: 23px;
         font-family: Arial, Helvetica, sans-serif;
-        color: rgba(255, 255, 255, 0.55);
+        font-weight: bold;
+        line-height: calc(15px * var(--font-scale));
+        white-space: nowrap;
+        z-index: 60;
       }
 
-      .proj-title {
-        font-weight: bold;
-        font-family: Arial, Helvetica, sans-serif;
+      .nav-ruler {
+        position: fixed;
+        left: 999px;
+        top: 33px;
+        width: calc(var(--nav-slot-width) * 5);
+        height: 20px;
+        background: url("static/img/gage102.svg") repeat-x left bottom;
+        z-index: 50;
       }
 
-      .news-title {
-        font-family: Arial, sans-serif;
-        font-weight: bold;
+      #nav-projects {
+        left: 1025px;
       }
 
-      .work-title {
-        font-family: Arial, sans-serif;
-        font-weight: bold;
+      #nav-email {
+        left: 1134px;
+      }
+
+      #nav-linkedin {
+        left: 1231px;
+      }
+
+      #nav-x {
+        left: 1351px;
+      }
+
+      #nav-resume {
+        left: 1434px;
       }
 
       #wrapper {
-        padding: 50px 25px;
+        position: fixed;
+        left: 24px;
+        top: 526px;
+        z-index: 20;
+        height: 384px;
+        padding: 12px 16px;
+        overflow: hidden;
+        background-color: #135bd6;
+        outline: 1px dashed rgba(255, 255, 255, 0.7);
+        outline-offset: 6px;
+        text-transform: lowercase;
+      }
+
+      #wrapper p {
+        margin: 0 0 1.5em;
+        max-width: 320px;
+      }
+
+      #wrapper p:last-child {
+        margin-bottom: 0;
+      }
+
+      #stick-figure {
+        position: fixed;
+        left: 255px;
+        top: 520px;
+        height: 185px;
+        width: auto;
+        opacity: 1;
+        transform: translateY(-72.5%);
+        pointer-events: none;
+        z-index: 90;
+      }
+
+      #ascii-brain {
+        position: fixed;
+        left: 50%;
+        top: 46%;
+        z-index: 1;
+        width: min(88vw, 1080px);
+        height: min(70vh, 720px);
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        transform: translate(-50%, -52%);
+        font-family: "Courier New", Courier, monospace;
+        font-size: 13px;
+        line-height: 13px;
+        letter-spacing: 0;
+        color: #fff;
+        background: transparent;
+        pointer-events: none;
+        user-select: none;
+        white-space: pre;
+        text-align: left;
       }
     </style>
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js"
+        }
+      }
+    </script>
   </head>
   <body>
+    <pre id="ascii-brain" aria-hidden="true"></pre>
     <div id="head">
       <div id="head-title">
-        <a class="head-link" href="/">Ryoji Ikeda</a>
-      </div>
-
-      <div id="head-menu">
-        <div id="head-menu1">
-          <table class="head-menu-table">
-            <tr>
-              <td><a class="head-link link-news" href="/">news</a></td>
-              <td><a class="head-link" href="#">works</a></td>
-              <td><a class="head-link" href="#">exhibitions</a></td>
-              <td><a class="head-link" href="#">performances</a></td>
-              <td><a class="head-link" href="#">acoustic concerts</a></td>
-              <td><a class="head-link" href="#">recordings</a></td>
-              <td><a class="head-link" href="#">collaborations</a></td>
-              <td><a class="head-link" href="#">publications</a></td>
-              <td><a class="head-link" href="#">articles</a></td>
-              <td><a class="head-link" href="#">biography</a></td>
-              <td><a class="head-link" href="#">contact</a></td>
-              <td><a class="head-link" href="#" style="color: red">shop</a></td>
-            </tr>
-          </table>
-        </div>
-
-        <div id="head-menu2">
-          <table class="head-menu-table">
-            <tr>
-              <td><a class="head-link proj-title" href="#">sleeping beauty</a></td>
-              <td><a class="head-link proj-title" href="#">X-verse</a></td>
-              <td><a class="head-link proj-title" href="#">point of no return</a></td>
-              <td><a class="head-link proj-title" href="#">exp</a></td>
-              <td><a class="head-link proj-title" href="#">micro | macro</a></td>
-              <td><a class="head-link proj-title" href="#">supersymmetry</a></td>
-              <td><a class="head-link proj-title" href="#">superposition</a></td>
-              <td><a class="head-link proj-title" href="#">test pattern</a></td>
-              <td><a class="head-link proj-title" href="#">datamatics</a></td>
-              <td><a class="head-link proj-title" href="#">the radar</a></td>
-              <td><a class="head-link proj-title" href="#">A</a></td>
-              <td><a class="head-link proj-title" href="#">spectra</a></td>
-              <td><a class="head-link proj-title" href="#">systematics</a></td>
-              <td><a class="head-link proj-title" href="#">V≠L</a></td>
-              <td><a class="head-link proj-title" href="#">time and space</a></td>
-              <td><a class="head-link proj-title" href="#">db</a></td>
-              <td><a class="head-link proj-title" href="#">matrix</a></td>
-              <td><a class="head-link proj-title" href="#">cyclo.</a></td>
-            </tr>
-          </table>
-        </div>
-
-        <div id="head-menu3">
-          <table class="head-menu-table">
-            <tr>
-              <td>2025&gt;&gt;</td>
-              <td>2018 &gt;&gt;</td>
-              <td>2018&gt;&gt;</td>
-              <td>2020&gt;&gt;</td>
-              <td>2015 &gt;&gt;</td>
-              <td>2014 &gt;&gt;</td>
-              <td>2012 &gt;&gt;</td>
-              <td>2008 &gt;&gt;</td>
-              <td>2006 &gt;&gt;</td>
-              <td>2012 &gt;&gt;</td>
-              <td>2000 &gt;&gt;</td>
-              <td>2000 &gt;&gt;</td>
-              <td>2012 &gt;&gt;</td>
-              <td>2008 &gt;&gt;</td>
-              <td>2010 &gt;&gt;</td>
-              <td>2000 &gt;&gt;</td>
-              <td>2000 &gt;&gt;</td>
-              <td>2000 &gt;&gt;</td>
-            </tr>
-          </table>
-        </div>
+        <a class="head-link" href="/">Konrad Tabay</a>
       </div>
     </div>
+
+    <a class="nav-item" id="nav-projects" href="#">projects</a>
+    <a class="nav-item" id="nav-email" href="#">email</a>
+    <a class="nav-item" id="nav-linkedin" href="#">linkedin</a>
+    <a class="nav-item" id="nav-x" href="#">x</a>
+    <a class="nav-item" id="nav-resume" href="#">resume</a>
+    <div class="nav-ruler" id="nav-ruler" aria-hidden="true"></div>
+
+    <video
+      id="stick-figure"
+      autoplay
+      loop
+      muted
+      playsinline
+      aria-hidden="true"
+    >
+      <source
+        src="static/video/stick-figure-loop.webm"
+        type="video/webm"
+      />
+    </video>
 
     <div id="wrapper">
-      <div><span class="news-title">9th Nam June Paik Prize 2026</span></div>
-      <div><span class="news-title">Selected texts on Ryoji Ikeda</span></div>
-      <div><span class="news-title">data.gram [nº4]</span></div>
-      <div><span class="news-title">Ryoji Ikeda</span></div>
-      <div><span class="news-title">data.tron</span></div>
-      <div><span class="news-title">ultratronics [live set]</span></div>
-      <div><span class="news-title">music for organ and brass</span></div>
-      <div><span class="news-title">music for strings/music for percussion 2</span></div>
-      <div><span class="news-title">ultratronics</span></div>
-      <div><span class="news-title">ultratronics [t-shirt]</span></div>
-      <div>
-        <span class="news-title">Ryoji Ikeda solo exhibition | Hirosaki MOCA (booklet)</span>
-      </div>
+      <p>
+        i currently study systems design engineering at university of
+        waterloo. i've previously worked on software at melius, textql, ownr,
+        and rbc and enjoy product engineering.
+      </p>
+      <p>
+        in my free time, i enjoy writing blogs like
+        <a href="#">why ontology for text-to-sql?</a> and building cool things
+        such as <a href="#">metallic blob</a> and
+        <a href="#">tiktok view predictor</a>.
+      </p>
+      <p>before i decided to go into engineering, i made lots of art..</p>
     </div>
+    <script type="module" src="static/js/ascii-brain.js"></script>
   </body>
 </html>
