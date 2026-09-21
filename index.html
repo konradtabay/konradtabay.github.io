@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -376,6 +376,8 @@
         }
 
         body {
+          display: flex;
+          flex-direction: column;
           padding: 0 16px;
         }
 
@@ -428,7 +430,9 @@
         }
 
         .nav-item {
-          transition: opacity 0.35s ease, transform 0.35s ease;
+          transition:
+            opacity 0.35s ease,
+            transform 0.35s ease;
         }
 
         body[data-pane] .nav-item,
@@ -451,6 +455,7 @@
           margin: clamp(96px, 14dvh, 124px) auto 4px;
           font-size: 7px;
           line-height: 7px;
+          transform: translateY(18px);
         }
 
         #brain-caption {
@@ -460,14 +465,20 @@
           width: auto;
           margin: 0 auto clamp(6px, 1.5dvh, 12px);
           padding: 0 8px;
+          transform: translateY(44px);
         }
 
         #bio-cluster {
-          display: block;
+          display: flex;
+          flex-direction: column;
+          align-items: flex-end;
+          align-self: flex-start;
           position: relative;
           width: min(92%, calc(100vw - 32px));
           max-width: 360px;
-          margin: clamp(-10px, -1dvh, 0px) auto 0;
+          margin-top: auto;
+          margin-bottom: 0;
+          margin-left: clamp(-8px, -2vw, -2px);
         }
 
         #wrapper a {
@@ -482,14 +493,15 @@
         }
 
         #stick-figure-frame {
-          position: relative;
+          position: absolute;
           left: auto;
-          top: auto;
-          width: clamp(108px, 34vw, 168px);
-          height: clamp(55px, 17.5vw, 86px);
-          margin: 0 0 clamp(-44px, -12vw, -32px) clamp(0px, 2vw, 14px);
-          transform: none;
-          z-index: 2;
+          right: clamp(2px, 1.5vw, 10px);
+          top: 0;
+          width: clamp(128px, 41vw, 198px);
+          height: clamp(65px, 21vw, 101px);
+          margin: 0;
+          transform: translate(71px, -2px) translate(42%, -72%);
+          z-index: 3;
           overflow: visible;
         }
 
@@ -500,6 +512,7 @@
 
         #wrapper {
           position: relative;
+          align-self: stretch;
           left: auto;
           top: auto;
           width: 100%;
@@ -540,6 +553,10 @@
           z-index: 30;
         }
 
+        body[data-pane="track-field"] .stage-embed iframe {
+          background: #135bd6;
+        }
+
         #stage-body img,
         #stage-body video,
         .reel-slide-inner {
@@ -567,6 +584,16 @@
           overflow: hidden;
           scroll-snap-align: start;
           scroll-snap-stop: always;
+          align-items: flex-start;
+          justify-content: flex-start;
+        }
+
+        body[data-pane="mountains"] .reel-slide-label {
+          display: none;
+        }
+
+        body[data-pane="cooking"] .reel-slide-label {
+          top: -14px;
         }
 
         body[data-pane] .reel-slide-inner {
@@ -587,7 +614,6 @@
           object-fit: contain;
         }
       }
-
     </style>
     <script type="importmap">
       {
@@ -614,11 +640,41 @@
       </div>
     </div>
 
-    <a class="nav-item" id="nav-email" href="mailto:tabay.konrad@gmail.com">email</a>
-    <a class="nav-item" id="nav-linkedin" href="https://www.linkedin.com/in/konradtabay" target="_blank" rel="noopener noreferrer">linkedin</a>
-    <a class="nav-item" id="nav-x" href="https://x.com/KonradTabay" target="_blank" rel="noopener noreferrer">x</a>
-    <a class="nav-item" id="nav-resume" href="https://docs.google.com/document/d/1_QLXhdrhFKY_d9-yfl9CHEcNynZkKvHH/preview" target="_blank" rel="noopener noreferrer">resume</a>
-    <a class="nav-item" id="nav-github" href="https://github.com/konradtabay" target="_blank" rel="noopener noreferrer">github</a>
+    <a class="nav-item" id="nav-email" href="mailto:tabay.konrad@gmail.com"
+      >email</a
+    >
+    <a
+      class="nav-item"
+      id="nav-linkedin"
+      href="https://www.linkedin.com/in/konradtabay"
+      target="_blank"
+      rel="noopener noreferrer"
+      >linkedin</a
+    >
+    <a
+      class="nav-item"
+      id="nav-x"
+      href="https://x.com/KonradTabay"
+      target="_blank"
+      rel="noopener noreferrer"
+      >x</a
+    >
+    <a
+      class="nav-item"
+      id="nav-resume"
+      href="https://docs.google.com/document/d/1_QLXhdrhFKY_d9-yfl9CHEcNynZkKvHH/preview"
+      target="_blank"
+      rel="noopener noreferrer"
+      >resume</a
+    >
+    <a
+      class="nav-item"
+      id="nav-github"
+      href="https://github.com/konradtabay"
+      target="_blank"
+      rel="noopener noreferrer"
+      >github</a
+    >
     <div class="nav-ruler" id="nav-ruler" aria-hidden="true"></div>
 
     <div id="bio-cluster">
@@ -639,27 +695,27 @@
       </div>
 
       <div id="wrapper">
-      <p>
-        i currently study systems design engineering at university of
-        waterloo, i've worked on ml with
-        <a href="#georg-northoff" data-pane="georg-northoff">georg northoff</a>, swe at
-        carleton university, and built
-        <a href="https://kalvo.io/" target="_blank" rel="noopener noreferrer"
-          >kalvo</a
-        >
-      </p>
-      <p>
-        in my free time, i love
-        <a href="#mountains" data-pane="mountains">Mountaineering</a>,
-        <a href="#cooking" data-pane="cooking">cooking</a>, and racing
-        <a href="#track-field" data-pane="track-field">track and field</a>
-      </p>
-      <p>
-        my life's timeline:<br />
-        <span class="timeline-fade">reach the frontier of ml</span> -&gt;
-        <span class="timeline-muted">startup</span> -&gt;
-        <span class="timeline-muted">have 6 kids</span>
-      </p>
+        <p>
+          i currently study systems design engineering at university of
+          waterloo, i've worked on ml with
+          <a href="#georg-northoff" data-pane="georg-northoff">georg northoff</a
+          >, swe at carleton university, and built
+          <a href="https://kalvo.io/" target="_blank" rel="noopener noreferrer"
+            >kalvo</a
+          >
+        </p>
+        <p>
+          in my free time, i love
+          <a href="#mountains" data-pane="mountains">Mountaineering</a>,
+          <a href="#cooking" data-pane="cooking">cooking</a>, and racing
+          <a href="#track-field" data-pane="track-field">track and field</a>
+        </p>
+        <p>
+          my life's timeline:<br />
+          <span class="timeline-fade">reach the frontier of ml</span> -&gt;
+          <span class="timeline-muted">startup</span> -&gt;
+          <span class="timeline-muted">have 6 kids</span>
+        </p>
       </div>
     </div>
 
@@ -682,8 +738,16 @@
       <section class="reel-slide" data-section="mountains">
         <div class="reel-slide-inner">
           <p class="reel-slide-label">Mountaineering</p>
-          <video muted loop playsinline poster="static/img/mountains/clip-4504.jpg">
-            <source src="static/video/mountains/clip-4504.mp4" type="video/mp4" />
+          <video
+            muted
+            loop
+            playsinline
+            poster="static/img/mountains/clip-4504.jpg"
+          >
+            <source
+              src="static/video/mountains/clip-4504.mp4"
+              type="video/mp4"
+            />
           </video>
         </div>
       </section>
@@ -704,8 +768,16 @@
       </section>
       <section class="reel-slide" data-section="mountains">
         <div class="reel-slide-inner">
-          <video muted loop playsinline poster="static/img/mountains/clip-2396.jpg">
-            <source src="static/video/mountains/clip-2396.mp4" type="video/mp4" />
+          <video
+            muted
+            loop
+            playsinline
+            poster="static/img/mountains/clip-2396.jpg"
+          >
+            <source
+              src="static/video/mountains/clip-2396.mp4"
+              type="video/mp4"
+            />
           </video>
         </div>
       </section>
@@ -768,6 +840,7 @@
     <!-- Brain mesh: "Lobes of the Cerebrum" by Anat2022, CC BY 4.0. https://sketchfab.com/3d-models/lobes-of-the-cerebrum-2d4eccc2e6624aed8b78c70a075c8ed6 -->
     <script type="module" src="/static/js/ascii-brain.js?v=4"></script>
     <script src="/static/js/analytics.js?v=1"></script>
-    <script src="/static/js/stage.js?v=14"></script>
+    <script src="/static/js/stage.js?v=16"></script>
+    <script src="/static/js/layout-tuner.js?v=1"></script>
   </body>
 </html>

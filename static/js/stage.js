@@ -209,12 +209,26 @@ function fitEmbed(iframe, paneName = "") {
 
     const pageWidth = Math.max(root.scrollWidth, body.scrollWidth, 1);
     const available = wrap.clientWidth;
-    const scale = available / pageWidth;
+    let scale = available / pageWidth;
+
+    if (paneName === "track-field" && mobilePane.matches) {
+      const focusWidth = pageWidth * 0.66;
+      scale = available / focusWidth;
+    }
+
     const viewportHeight = Math.ceil(wrap.clientHeight / scale);
+    const scaledWidth = pageWidth * scale;
+    const offsetX =
+      paneName === "track-field" && mobilePane.matches
+        ? (available - scaledWidth) / 2
+        : 0;
 
     iframe.style.width = `${pageWidth}px`;
     iframe.style.height = `${viewportHeight}px`;
-    iframe.style.transform = `scale(${scale})`;
+    iframe.style.transform =
+      offsetX === 0
+        ? `scale(${scale})`
+        : `translateX(${offsetX}px) scale(${scale})`;
     iframe.style.transformOrigin = "top left";
   };
 
@@ -242,9 +256,13 @@ function fitEmbed(iframe, paneName = "") {
   if (iframe.contentDocument?.readyState === "complete") {
     window.setTimeout(scrollOnceAndRelease, 300);
   } else {
-    iframe.addEventListener("load", () => {
-      window.setTimeout(scrollOnceAndRelease, 300);
-    }, { once: true });
+    iframe.addEventListener(
+      "load",
+      () => {
+        window.setTimeout(scrollOnceAndRelease, 300);
+      },
+      { once: true },
+    );
   }
 }
 
@@ -294,7 +312,7 @@ function setupReelObservers() {
         }
       });
     },
-    { root: stageBody, threshold: 0.65 }
+    { root: stageBody, threshold: 0.65 },
   );
 
   stageBody.querySelectorAll("video").forEach((video) => {
@@ -321,7 +339,7 @@ function setupReelObservers() {
         }
       }
     },
-    { root: stageBody, threshold: [0.55, 0.75] }
+    { root: stageBody, threshold: [0.55, 0.75] },
   );
 
   stageBody.querySelectorAll(".reel-slide").forEach((slide) => {
@@ -329,7 +347,9 @@ function setupReelObservers() {
   });
 
   stageBody.removeEventListener("scroll", playVisibleReelVideos);
-  stageBody.addEventListener("scroll", playVisibleReelVideos, { passive: true });
+  stageBody.addEventListener("scroll", playVisibleReelVideos, {
+    passive: true,
+  });
 }
 
 function fitMobileReelSlides() {
@@ -381,8 +401,14 @@ function placeMobileCluster(open) {
     return;
   }
 
-  const shift = Math.max(0, Math.round(window.innerHeight - MOBILE_PANE_PEEK - clusterTop));
-  const stageHeight = Math.max(220, Math.round(clusterTop + shift - stageTop - 12));
+  const shift = Math.max(
+    0,
+    Math.round(window.innerHeight - MOBILE_PANE_PEEK - clusterTop),
+  );
+  const stageHeight = Math.max(
+    220,
+    Math.round(clusterTop + shift - stageTop - 12),
+  );
   stage.style.height = `${stageHeight}px`;
   fitMobileReelSlides();
   cluster.dataset.paneShift = "1";
@@ -395,7 +421,7 @@ function placeMobileCluster(open) {
 
 function scrollReelTo(section, behavior = "smooth") {
   const target = stageBody.querySelector(
-    `.reel-slide[data-section="${section}"]`
+    `.reel-slide[data-section="${section}"]`,
   );
   if (!target) {
     return;
