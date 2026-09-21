@@ -1,6 +1,7 @@
 import * as THREE from "three";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 
+const BRAIN_MODEL_URL = new URL("../models/brain.glb", import.meta.url).href;
 const RAMP = " .:-=+*#%@";
 const MAX_YAW = 0.52;
 const MAX_PITCH = 0.32;
@@ -73,7 +74,7 @@ resize();
 requestAnimationFrame(tick);
 
 async function loadBrain() {
-  const gltf = await new GLTFLoader().loadAsync("static/models/brain.glb");
+  const gltf = await new GLTFLoader().loadAsync(BRAIN_MODEL_URL);
   const model = gltf.scene;
   const material = new THREE.MeshPhongMaterial({
     color: 0xe8e8e8,
