@@ -20,6 +20,21 @@ function paneNameFromHash() {
   return location.hash.replace(/^#/, "");
 }
 
+function trackPaneOpen(name) {
+  window.trackEvent?.("pane_open", { pane_name: name });
+}
+
+function trackPaneClose(name) {
+  if (!name) {
+    return;
+  }
+  window.trackEvent?.("pane_close", { pane_name: name });
+}
+
+function trackReelSection(section) {
+  window.trackEvent?.("reel_section_view", { section_name: section });
+}
+
 function bindEmbedFit(iframe, apply) {
   let resizeObserver = null;
   let mutationObserver = null;
@@ -251,9 +266,13 @@ function setupReelObservers() {
       }
       const section = visible.target.dataset.section;
       if (section && document.body.dataset.pane !== section) {
+        const previousPane = document.body.dataset.pane;
         document.body.dataset.pane = section;
         if (location.hash !== `#${section}`) {
           history.replaceState({ pane: section }, "", `#${section}`);
+        }
+        if (previousPane && REEL_SECTIONS.has(previousPane)) {
+          trackReelSection(section);
         }
       }
     },
@@ -300,6 +319,8 @@ function openReel(section, pushHash = true) {
   if (pushHash && location.hash !== `#${section}`) {
     history.pushState({ pane: section }, "", `#${section}`);
   }
+
+  trackPaneOpen(section);
 }
 
 function openPane(name, pushHash = true) {
@@ -308,9 +329,13 @@ function openPane(name, pushHash = true) {
       stage.classList.contains("is-open") &&
       stageBody.classList.contains("reel-scroll")
     ) {
+      const previousPane = document.body.dataset.pane;
       scrollReelTo(name);
       if (pushHash && location.hash !== `#${name}`) {
         history.pushState({ pane: name }, "", `#${name}`);
+      }
+      if (previousPane !== name) {
+        trackPaneOpen(name);
       }
       return;
     }
@@ -354,12 +379,16 @@ function openPane(name, pushHash = true) {
   if (pushHash && location.hash !== `#${name}`) {
     history.pushState({ pane: name }, "", `#${name}`);
   }
+
+  trackPaneOpen(name);
 }
 
 function closePane(pushHash = true) {
   if (!stage || !stageBody) {
     return;
   }
+
+  const closedPane = document.body.dataset.pane;
 
   disconnectReelObservers();
   stageBody.removeEventListener("scroll", playVisibleReelVideos);
@@ -372,6 +401,8 @@ function closePane(pushHash = true) {
   if (pushHash && location.hash) {
     history.pushState({}, "", `${location.pathname}${location.search}`);
   }
+
+  trackPaneClose(closedPane);
 }
 
 function syncFromHash() {
@@ -409,6 +440,15 @@ if (homeLink) {
     }
     event.preventDefault();
     closePane();
+  });
+}
+
+if (stageOriginalLink) {
+  stageOriginalLink.addEventListener("click", () => {
+    window.trackEvent?.("see_original_page", {
+      pane_name: document.body.dataset.pane || "",
+      link_url: stageOriginalLink.href,
+    });
   });
 }
 
