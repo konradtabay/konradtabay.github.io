@@ -3,6 +3,19 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-EJBQKWS0ES"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-EJBQKWS0ES");
+    </script>
     <link rel="icon" href="static/favicon.svg" type="image/svg+xml" />
     <title>konrad tabay</title>
     <style>
@@ -392,12 +405,8 @@
         aria-hidden="true"
       >
         <source
-          src="/static/video/stick-figure-loop.mp4?v=3"
+          src="/static/video/stick-figure-loop.mp4?v=4"
           type="video/mp4"
-        />
-        <source
-          src="/static/video/stick-figure-loop.webm?v=3"
-          type="video/webm"
         />
       </video>
     </div>
@@ -530,6 +539,7 @@
 
     <!-- Brain mesh: "Lobes of the Cerebrum" by Anat2022, CC BY 4.0. https://sketchfab.com/3d-models/lobes-of-the-cerebrum-2d4eccc2e6624aed8b78c70a075c8ed6 -->
     <script type="module" src="/static/js/ascii-brain.js?v=3"></script>
-    <script src="/static/js/stage.js?v=3"></script>
+    <script src="/static/js/analytics.js?v=1"></script>
+    <script src="/static/js/stage.js?v=4"></script>
   </body>
 </html>
