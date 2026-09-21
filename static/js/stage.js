@@ -10,6 +10,8 @@ const paneOriginalUrls = {
     "https://scholar.google.com/citations?hl=en&user=-w-9zOQAAAAJ",
 };
 const REEL_SECTIONS = new Set(["mountains", "cooking"]);
+const mobilePane = window.matchMedia("(max-width: 760px)");
+const MOBILE_PANE_PEEK = 170;
 const SCHOLAR_PANES = new Set(["georg-northoff"]);
 const SCHOLAR_EMBED_WIDTH = 1200;
 
@@ -157,6 +159,30 @@ function fitScholarEmbed(iframe, paneName = "georg-northoff") {
   bindEmbedFit(iframe, apply);
 }
 
+function trackFieldHighlightScrollY(doc) {
+  const win = doc.defaultView;
+  const highlight = doc.getElementById("konrad-highlight");
+  if (!win || !highlight) {
+    return null;
+  }
+
+  return Math.max(
+    0,
+    highlight.offsetTop - win.innerHeight / 2 + highlight.offsetHeight / 2,
+  );
+}
+
+function scrollTrackFieldHighlight(iframe, doc) {
+  const targetScrollY = trackFieldHighlightScrollY(doc);
+  if (targetScrollY === null) {
+    return false;
+  }
+
+  doc.defaultView.scrollTo(0, targetScrollY);
+  iframe.dataset.highlightScrolled = "1";
+  return true;
+}
+
 function fitEmbed(iframe, paneName = "") {
   const wrap = iframe.parentElement;
   if (!wrap) {
@@ -184,23 +210,42 @@ function fitEmbed(iframe, paneName = "") {
     const pageWidth = Math.max(root.scrollWidth, body.scrollWidth, 1);
     const available = wrap.clientWidth;
     const scale = available / pageWidth;
+    const viewportHeight = Math.ceil(wrap.clientHeight / scale);
 
     iframe.style.width = `${pageWidth}px`;
-    iframe.style.height = `${Math.ceil(wrap.clientHeight / scale)}px`;
+    iframe.style.height = `${viewportHeight}px`;
     iframe.style.transform = `scale(${scale})`;
     iframe.style.transformOrigin = "top left";
-
-    const konrad = doc.getElementById("konrad-highlight");
-    if (konrad) {
-      requestAnimationFrame(() => {
-        konrad.scrollIntoView({
-          block: "center",
-        });
-      });
-    }
   };
 
-  bindEmbedFit(iframe, apply);
+  const cleanup = bindEmbedFit(iframe, apply);
+
+  if (paneName !== "track-field") {
+    return;
+  }
+
+  const scrollOnceAndRelease = () => {
+    apply();
+    requestAnimationFrame(() => {
+      try {
+        const doc = iframe.contentDocument;
+        if (doc && !iframe.dataset.highlightScrolled) {
+          scrollTrackFieldHighlight(iframe, doc);
+        }
+      } catch (error) {
+        // Ignore cross-origin or unload errors.
+      }
+      cleanup();
+    });
+  };
+
+  if (iframe.contentDocument?.readyState === "complete") {
+    window.setTimeout(scrollOnceAndRelease, 300);
+  } else {
+    iframe.addEventListener("load", () => {
+      window.setTimeout(scrollOnceAndRelease, 300);
+    }, { once: true });
+  }
 }
 
 function disconnectReelObservers() {
@@ -287,6 +332,74 @@ function setupReelObservers() {
   stageBody.addEventListener("scroll", playVisibleReelVideos, { passive: true });
 }
 
+function fitMobileReelSlides() {
+  if (!stageBody?.classList.contains("reel-scroll")) {
+    stageBody?.style.removeProperty("--mobile-pane-slide");
+    return;
+  }
+
+  const slideHeight = stageBody.clientHeight;
+  if (!slideHeight) {
+    return;
+  }
+
+  stageBody.style.setProperty("--mobile-pane-slide", `${slideHeight}px`);
+  stageBody.querySelectorAll(".reel-slide").forEach((slide) => {
+    slide.style.height = `${slideHeight}px`;
+    slide.style.minHeight = `${slideHeight}px`;
+    slide.style.maxHeight = `${slideHeight}px`;
+  });
+}
+
+function placeMobileCluster(open) {
+  const frame = document.getElementById("stick-figure-frame");
+  const box = document.getElementById("wrapper");
+  if (!frame || !box || !stage) {
+    return;
+  }
+
+  if (!mobilePane.matches || !open) {
+    frame.style.transition = "";
+    box.style.transition = "";
+    frame.style.transform = "";
+    box.style.transform = "";
+    delete box.dataset.paneShift;
+    stage.style.height = "";
+    stageBody?.style.removeProperty("--mobile-pane-slide");
+    return;
+  }
+
+  if (box.dataset.paneShift === "1") {
+    return;
+  }
+
+  frame.style.transition = "none";
+  box.style.transition = "none";
+  frame.style.transform = "translate(332px, 15px)";
+  box.style.transform = "none";
+
+  const frameTop = frame.getBoundingClientRect().top;
+  const stageTop = stage.getBoundingClientRect().top;
+  if (frameTop < 40) {
+    frame.style.transition = "";
+    box.style.transition = "";
+    return;
+  }
+
+  const shift = Math.max(0, Math.round(window.innerHeight - MOBILE_PANE_PEEK - frameTop));
+  const stageHeight = Math.max(220, Math.round(frameTop + shift - stageTop - 12));
+  stage.style.height = `${stageHeight}px`;
+  fitMobileReelSlides();
+  box.dataset.paneShift = "1";
+
+  requestAnimationFrame(() => {
+    frame.style.transition = "";
+    box.style.transition = "";
+    frame.style.transform = `translate(332px, ${15 + shift}px)`;
+    box.style.transform = `translateY(${shift}px)`;
+  });
+}
+
 function scrollReelTo(section, behavior = "smooth") {
   const target = stageBody.querySelector(
     `.reel-slide[data-section="${section}"]`
@@ -320,6 +433,7 @@ function openReel(section, pushHash = true) {
     history.pushState({ pane: section }, "", `#${section}`);
   }
 
+  placeMobileCluster(true);
   trackPaneOpen(section);
 }
 
@@ -380,6 +494,7 @@ function openPane(name, pushHash = true) {
     history.pushState({ pane: name }, "", `#${name}`);
   }
 
+  placeMobileCluster(true);
   trackPaneOpen(name);
 }
 
@@ -396,6 +511,7 @@ function closePane(pushHash = true) {
   stageBody.classList.remove("reel-scroll");
   stage.classList.remove("is-open");
   delete document.body.dataset.pane;
+  placeMobileCluster(false);
   window.dispatchEvent(new Event("resize"));
 
   if (pushHash && location.hash) {

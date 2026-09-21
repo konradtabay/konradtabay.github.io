@@ -606,11 +606,11 @@ Javelin 4th Dustin Coldrey, Colonel By 39.06m
       home.href = window.location.origin + "/";
     }
 
-    var el = document.getElementById("konrad-highlight");
-    if (el) {
-      window.setTimeout(function () {
+    if (!embedded) {
+      var el = document.getElementById("konrad-highlight");
+      if (el) {
         el.scrollIntoView({ block: "center" });
-      }, embedded ? 80 : 0);
+      }
     }
   });
 </script>

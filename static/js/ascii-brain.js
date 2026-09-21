@@ -8,10 +8,19 @@ const MAX_PITCH = 0.32;
 const FOLLOW = 0.085;
 const IDLE_YAW = 0.045;
 const IDLE_PITCH = 0.02;
+const MOBILE_BREAKPOINT = "(max-width: 760px)";
+const MOBILE_YAW_SPEED = 0.00018;
+const MOBILE_PITCH = 0.04;
 
 const pointer = { x: 0, y: 0 };
 const damped = { x: 0, y: 0 };
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const mobileMq = window.matchMedia(MOBILE_BREAKPOINT);
+let isMobile = mobileMq.matches;
+
+mobileMq.addEventListener("change", (event) => {
+  isMobile = event.matches;
+});
 
 const asciiEl = document.getElementById("ascii-brain");
 if (!asciiEl) {
@@ -166,13 +175,19 @@ function asciify() {
 
 function tick(time) {
   if (!reduceMotion) {
-    damped.x += (pointer.x - damped.x) * FOLLOW;
-    damped.y += (pointer.y - damped.y) * FOLLOW;
-    const idle = time * 0.00045;
-    pivot.rotation.y = damped.x * MAX_YAW + Math.sin(idle) * IDLE_YAW;
-    pivot.rotation.x = damped.y * MAX_PITCH + Math.sin(idle * 0.85) * IDLE_PITCH;
-    pivot.position.x = damped.x * 0.08;
-    pivot.position.y = damped.y * -0.05;
+    if (isMobile) {
+      pivot.rotation.y = time * MOBILE_YAW_SPEED;
+      pivot.rotation.x = Math.sin(time * 0.0004) * MOBILE_PITCH;
+      pivot.position.set(0, 0, 0);
+    } else {
+      damped.x += (pointer.x - damped.x) * FOLLOW;
+      damped.y += (pointer.y - damped.y) * FOLLOW;
+      const idle = time * 0.00045;
+      pivot.rotation.y = damped.x * MAX_YAW + Math.sin(idle) * IDLE_YAW;
+      pivot.rotation.x = damped.y * MAX_PITCH + Math.sin(idle * 0.85) * IDLE_PITCH;
+      pivot.position.x = damped.x * 0.08;
+      pivot.position.y = damped.y * -0.05;
+    }
   }
 
   renderer.render(scene, camera);

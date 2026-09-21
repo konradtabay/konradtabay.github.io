@@ -362,6 +362,217 @@
         overflow: hidden;
       }
 
+      @media (max-width: 760px) {
+        html,
+        body {
+          overflow: hidden;
+          height: 100dvh;
+          max-height: 100dvh;
+          overscroll-behavior: none;
+        }
+
+        body {
+          padding: 0 16px;
+        }
+
+        #head {
+          position: fixed;
+          top: 14px;
+          left: 16px;
+          z-index: 80;
+          padding: 0;
+          background: transparent;
+        }
+
+        #head-title {
+          margin: 0;
+        }
+
+        .nav-ruler {
+          display: none;
+        }
+
+        .nav-item,
+        #nav-email,
+        #nav-linkedin,
+        #nav-x,
+        #nav-resume,
+        #nav-github {
+          left: auto;
+          right: 16px;
+          text-align: right;
+        }
+
+        #nav-email {
+          top: 14px;
+        }
+
+        #nav-linkedin {
+          top: 36px;
+        }
+
+        #nav-x {
+          top: 58px;
+        }
+
+        #nav-resume {
+          top: 80px;
+        }
+
+        #nav-github {
+          top: 102px;
+        }
+
+        .nav-item {
+          transition: opacity 0.35s ease, transform 0.35s ease;
+        }
+
+        body[data-pane] .nav-item,
+        body[data-pane] #nav-email,
+        body[data-pane] #nav-linkedin,
+        body[data-pane] #nav-x,
+        body[data-pane] #nav-resume,
+        body[data-pane] #nav-github {
+          opacity: 0;
+          transform: translateY(-10px);
+          pointer-events: none;
+        }
+
+        #ascii-brain {
+          position: relative;
+          left: auto;
+          top: auto;
+          width: min(100%, 340px);
+          height: 230px;
+          margin: 132px auto 4px;
+          font-size: 7px;
+          line-height: 7px;
+        }
+
+        #brain-caption {
+          position: relative;
+          left: auto;
+          top: auto;
+          width: auto;
+          margin: 0 auto 18px;
+          padding: 0 8px;
+        }
+
+        #wrapper a {
+          font-weight: bold;
+          text-decoration: underline;
+        }
+
+        #stick-figure-frame,
+        #wrapper {
+          transition: transform 0.7s ease;
+        }
+
+        #stick-figure-frame {
+          position: relative;
+          left: auto;
+          top: auto;
+          width: 168px;
+          height: 86px;
+          margin: 0 0 0 28px;
+          transform: translate(332px, 15px);
+        }
+
+        #stick-figure {
+          height: 86px;
+        }
+
+        #wrapper {
+          position: relative;
+          left: auto;
+          top: auto;
+          width: 84%;
+          height: auto;
+          margin-top: -6px;
+          padding: 12px 14px;
+          box-sizing: border-box;
+        }
+
+        #wrapper p {
+          max-width: none;
+        }
+
+        #stage {
+          left: 12px;
+          top: 132px;
+          width: calc(100vw - 24px);
+          height: calc(100dvh - 148px);
+        }
+
+        #stage-header {
+          justify-content: flex-end;
+          gap: 16px;
+          text-align: right;
+        }
+
+        body[data-pane] #stage {
+          top: 44px;
+        }
+
+        body[data-pane] #ascii-brain,
+        body[data-pane] #brain-caption {
+          display: block;
+          visibility: hidden;
+        }
+
+        body[data-pane] #stick-figure-frame,
+        body[data-pane] #wrapper {
+          z-index: 30;
+        }
+
+        #stage-body img,
+        #stage-body video,
+        .reel-slide-inner {
+          max-width: 100%;
+        }
+
+        #stage-body img,
+        #stage-body video,
+        #stage-body.reel-scroll img,
+        #stage-body.reel-scroll video {
+          max-height: calc(100dvh - 220px);
+        }
+
+        body[data-pane] #stage-body.reel-scroll {
+          scroll-snap-type: y mandatory;
+          scroll-padding: 0;
+        }
+
+        body[data-pane] .reel-slide {
+          height: var(--mobile-pane-slide, 100%);
+          min-height: var(--mobile-pane-slide, 100%);
+          max-height: var(--mobile-pane-slide, 100%);
+          padding: 0;
+          margin: 0;
+          overflow: hidden;
+          scroll-snap-align: start;
+          scroll-snap-stop: always;
+        }
+
+        body[data-pane] .reel-slide-inner {
+          width: 100%;
+          height: 100%;
+          max-width: 100%;
+          max-height: 100%;
+        }
+
+        body[data-pane] #stage-body.reel-scroll img,
+        body[data-pane] #stage-body.reel-scroll video {
+          width: 100%;
+          height: 100%;
+          max-width: 100%;
+          max-height: 100%;
+          margin: 0;
+          aspect-ratio: auto;
+          object-fit: contain;
+        }
+      }
+
     </style>
     <script type="importmap">
       {
@@ -405,7 +616,7 @@
         aria-hidden="true"
       >
         <source
-          src="/static/video/stick-figure-loop.mp4?v=4"
+          src="/static/video/stick-figure-loop.mp4?v=7"
           type="video/mp4"
         />
       </video>
@@ -538,8 +749,8 @@
     </template>
 
     <!-- Brain mesh: "Lobes of the Cerebrum" by Anat2022, CC BY 4.0. https://sketchfab.com/3d-models/lobes-of-the-cerebrum-2d4eccc2e6624aed8b78c70a075c8ed6 -->
-    <script type="module" src="/static/js/ascii-brain.js?v=3"></script>
+    <script type="module" src="/static/js/ascii-brain.js?v=4"></script>
     <script src="/static/js/analytics.js?v=1"></script>
-    <script src="/static/js/stage.js?v=4"></script>
+    <script src="/static/js/stage.js?v=14"></script>
   </body>
 </html>
